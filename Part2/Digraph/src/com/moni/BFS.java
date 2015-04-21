@@ -11,12 +11,12 @@ public class BFS {
 
     boolean marked[];
 
-    public BFS(UndirectedGraph G, int v) {
+    public BFS(Digraph G, int v) {
         marked = new boolean[G.numberOfVertices()];
         bfs(G, v);
     }
 
-    public void bfs(UndirectedGraph G, int v){
+    public void bfs(Digraph G, int v){
         Queue<Integer> queue = new LinkedList<Integer>();
         marked[v] = true;
         queue.add(v);
@@ -33,7 +33,8 @@ public class BFS {
     }
 
     public static void main(String[] args){
-        UndirectedGraph graph = new UndirectedGraph(7);
+        int v = 7;
+        Digraph graph = new Digraph(v);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
         graph.addEdge(5, 6);
@@ -42,7 +43,7 @@ public class BFS {
         graph.addEdge(0, 2);
         graph.addEdge(6, 2);
         graph.addEdge(1, 3);
-	int source = 5;
+        int source = 5;
         BFS search = new BFS(graph, source);
         for (int w = 0; w < graph.numberOfVertices(); w++) {
             if (search.marked[w]) {

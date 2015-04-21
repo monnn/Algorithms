@@ -21,6 +21,17 @@ public class UndirectedGraph {
         }
     }
 
+//    public void readFromFile(File file) throws IOException {
+//        BufferedReader br = new BufferedReader(new FileReader("file.txt"));
+//
+//        for (int i = 0; i < V; i++) {
+//            String line = br.readLine();
+//            V = line.charAt(0);
+//        }
+//
+//        br.close();
+//    }
+
     public void addEdge(int v, int w){
         adj[v].add(w);
         adj[w].add(v);

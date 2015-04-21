@@ -5,14 +5,14 @@ package com.moni;
  * monika.shopova@gmail.com
  */
 
-public class UndirectedGraph {
+public class Digraph {
 
     public int V;
     public int E;
     public Bag<Integer>[] adj;
 
 
-    public UndirectedGraph(int V) {
+    public Digraph(int V) {
         this.V = V;
         this.E = 0;
         adj = (Bag<Integer>[]) new Bag[V];
@@ -23,7 +23,6 @@ public class UndirectedGraph {
 
     public void addEdge(int v, int w){
         adj[v].add(w);
-        adj[w].add(v);
         E++;
     }
 
@@ -50,7 +49,7 @@ public class UndirectedGraph {
     }
 
     public static void main(String[] args) {
-        UndirectedGraph graph = new UndirectedGraph(7);
+        Digraph graph = new Digraph(7);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
         graph.addEdge(5, 6);

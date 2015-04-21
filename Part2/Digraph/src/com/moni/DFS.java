@@ -12,14 +12,14 @@ public class DFS {
     int[] edgeTo;
     int v;
 
-    public DFS(UndirectedGraph G, int v) {
+    public DFS(Digraph G, int v) {
         this.v = v;
         marked = new boolean[G.numberOfVertices()];
         edgeTo = new int[G.numberOfVertices()];
         dfs(G, v);
     }
 
-    public void dfs(UndirectedGraph G, int v ){
+    public void dfs(Digraph G, int v ){
         marked[v] = true;
         for (int w: G.adj[v]){
             if(!marked[w]){
@@ -41,7 +41,7 @@ public class DFS {
     }
 
     public static void main(String[] args){
-        UndirectedGraph graph = new UndirectedGraph(7);
+        Digraph graph = new Digraph(7);
         graph.addEdge(1, 2);
         graph.addEdge(2, 3);
         graph.addEdge(5, 6);
@@ -56,7 +56,7 @@ public class DFS {
             if (search.marked[w]) {
                 System.out.println("There is a path between " + source + " and " + w);
             }
-        }
+            }
         System.out.println("In connected component are: ");
         for (int i = 0; i < graph.numberOfVertices(); i++) {
             if (search.marked[i])

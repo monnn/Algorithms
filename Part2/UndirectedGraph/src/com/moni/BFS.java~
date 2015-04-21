@@ -46,7 +46,7 @@ public class BFS {
         BFS search = new BFS(graph, source);
         for (int w = 0; w < graph.numberOfVertices(); w++) {
             if (search.marked[w]) {
-                System.out.println("There is a path between " + source + " and " + w);
+                System.out.println("There is a path between " + source + " 			and " + w);
             }
         }
     }
