@@ -4,41 +4,34 @@ package com.moni;
  * Created by Monica Shopova
  * monika.shopova@gmail.com
  */
-public class WeightedGraph {
+public class WeightedDigraph {
 
     public int V;
     public int E;
-    public Bag<Edge>[] adj;
+    public Bag<DirectedEdge>[] adj;
 
-
-    public WeightedGraph(int V) {
+    public WeightedDigraph(int V) {
         this.V = V;
         this.E = 0;
-        adj = (Bag<Edge>[]) new Bag[V];
+        adj = (Bag<DirectedEdge>[]) new Bag[V];
         for (int i = 0; i < V; i++) {
-            adj[i] = new Bag<Edge>();
+            adj[i] = new Bag<DirectedEdge>();
         }
     }
 
-    public void addEdge(Edge e){
-        int v = e.either();
-        int w = e.other(v);
+    public void addEdge(DirectedEdge e){
+        int v = e.from();
+        int w = e.to();
         adj[v].add(e);
-        adj[w].add(e);
         E++;
     }
 
-    public Iterable<Edge> edges() {
-        Bag<Edge> list = new Bag<Edge>();
+    public Iterable<DirectedEdge> edges() {
+        Bag<DirectedEdge> list = new Bag<DirectedEdge>();
         for (int v = 0; v < V; v++) {
-            int selfLoops = 0;
-            for (Edge e : adj[v]) {
-                if (e.other(v) > v) {
+            for (DirectedEdge e : adj[v]) {
+                if (e.to() > v) {
                     list.add(e);
-                }
-                else if (e.other(v) == v) {
-                    if (selfLoops % 2 == 0) list.add(e);
-                    selfLoops++;
                 }
             }
         }
@@ -52,7 +45,7 @@ public class WeightedGraph {
         for (int v = 0; v < V; v++) {
             s.append('\n');
             s.append(v + ": ");
-            for (Edge e : adj[v]) {
+            for (DirectedEdge e : adj[v]) {
                 s.append(e + " ");
             }
         }
@@ -60,12 +53,12 @@ public class WeightedGraph {
     }
 
     public static void main(String[] args) {
-        WeightedGraph graph = new WeightedGraph(7);
-        Edge a = new Edge(1, 2, 3.14);
-        Edge b = new Edge(2, 3, 2.14);
-        Edge c = new Edge(4, 5, 2.04);
-        Edge d = new Edge(6, 2, 1.14);
-        Edge e = new Edge(1, 3, 1.10);
+        WeightedDigraph graph = new WeightedDigraph(7);
+        DirectedEdge a = new DirectedEdge(1, 2, 3.14);
+        DirectedEdge b = new DirectedEdge(2, 3, 2.14);
+        DirectedEdge c = new DirectedEdge(4, 5, 2.04);
+        DirectedEdge d = new DirectedEdge(6, 2, 1.14);
+        DirectedEdge e = new DirectedEdge(1, 3, 1.10);
         graph.addEdge(a);
         graph.addEdge(b);
         graph.addEdge(c);

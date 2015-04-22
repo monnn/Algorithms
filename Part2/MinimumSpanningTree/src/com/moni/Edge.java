@@ -6,9 +6,9 @@ package com.moni;
  */
 public class Edge implements Comparable<Edge> {
 
-    private final int v;
-    private final int w;
-    private final double weight;
+    public final int v;
+    public final int w;
+    public final double weight;
 
     @Override
     public int compareTo(Edge that) {
